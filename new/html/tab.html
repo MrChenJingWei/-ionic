@@ -1,0 +1,64 @@
+<header class="nav_p nav_s">
+    <div class="logo_head_s logo_head_p"></div>
+    <div class="person_head_s person_head_p"></div>
+    <div class="down_head_s down_head_p"></div>
+    <div class="emil_head_s emil_head_p"></div>
+</header>
+<div ng-controller="tabBarController">
+    <div class="tabBar">
+        <div class="tabBar_Border">
+            <div class="tabBar_first_s tabBar_first_p">
+                <ul class="tabBar_first_ul_s tabBar_first_ul_p">
+                    <li ng-repeat="listName in tabList.listArr" ui-sref="tab.news" ng-click="setUrlTab(listName.idStr)">
+                        {{listName.demo}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tabBar_hidden"></div>
+    </div>
+    <div class="tabBar_none"></div>
+
+    <ul>
+        <li ng-click="newsObj.goToNewsDetail()" ng-repeat="news in newsObj.newList |orderBy:news.priority">
+            <div ng-if="!news.imgextra" class="contentView_p contentView_s">
+                <div class="new_img_p new_img_s"><img ng-src="{{news.imgsrc}}" alt=""></div>
+                <div class="new_content_p new_content_s">
+                    <!--标题-->
+                    <h3 class="line_height_12">{{news.title}}</h3>
+                    <br>
+                    <div>
+                        <!--更新时间-->
+                        <span class="left font_A">{{news.ptime}}</span>
+                        <!--评论-->
+                        <div class="right font_A">🀂 {{news.commentCount}}</div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <!--三张图片的-->
+            <div ng-if="news.imgextra" class="contentView_p contentView_s_s">
+                <div class="new_img_p_s new_img_s_s">
+                    <img ng-src="{{news.imgsrc}}" alt="">
+                    <img ng-src="{{news.imgextra[0].imgsrc}}" alt="">
+                    <img ng-src="{{news.imgextra[1].imgsrc}}" alt="">
+                </div>
+                <br>
+                <div class="new_content_p_s new_content_s_s">
+                    <!--标题-->
+                    <h3 class="line_height_12">{{news.title}}</h3>
+                    <br>
+                    <div>
+                        <!--更新时间-->
+                        <span class="left font_A">{{news.ptime}}</span>
+                        <!--评论-->
+                        <div class="right font_A">🀂 {{news.replyCount}}</div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    </ul>
+    <!--<ui-view></ui-view>-->
+</div>
